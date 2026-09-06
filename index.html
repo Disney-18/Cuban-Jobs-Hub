@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cu_JobsHub — Oportunidades para todo talento cubano</title>
+    <meta name="description" content="Directorio de empleos remotos, becas, cursos, freelance y recursos para profesionales cubanos en TODAS las áreas." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇨🇺</text></svg>" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.0.1/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a href="/" class="brand">
+                <span class="brand-mark"><i class="ti ti-flag-2"></i></span>
+                <span class="brand-name">cu_JobsHub</span>
+            </a>
+            <p class="tagline">Conectando talento cubano con el mundo</p>
+        </div>
+    </header>
+
+    <section class="board-hero">
+        <div class="wrap">
+            <div class="board" aria-hidden="true">
+                <div class="board-row">
+                    <span class="board-label">OPORTUNIDADES</span>
+                    <span class="board-flip" id="flip-text">buscando oportunidades...</span>
+                </div>
+            </div>
+            <h1 class="hero-title">Oportunidades globales<br />para todo talento cubano.</h1>
+            <p class="hero-sub">
+                Empleos remotos, becas, cursos y recursos para profesionales de <strong>TODAS</strong> las areas.
+                Sin sorpresas, sin requisitos imposibles.
+            </p>
+        </div>
+    </section>
+
+    <main class="wrap">
+
+        <section class="stats" aria-label="Estadisticas">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="stats-counter">0</span>
+                    <span class="stat-label">oportunidades disponibles</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stats-categorias">0</span>
+                    <span class="stat-label">categorias profesionales</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">remoto-friendly</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stats-paises">0</span>
+                    <span class="stat-label">paises ofertando</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="controls" aria-label="Filtros">
+            <div class="control-row">
+                <div class="search-wrapper">
+                    <i class="ti ti-search search-icon"></i>
+                    <input type="search" id="search" placeholder="Buscar por titulo, organizacion o categoria..." />
+                </div>
+            </div>
+
+            <div class="control-row chips" id="type-chips">
+                <button class="chip is-active" data-type="todos"><i class="ti ti-grid"></i> Todos</button>
+                <button class="chip" data-type="empleo"><i class="ti ti-briefcase"></i> Empleo</button>
+                <button class="chip" data-type="beca"><i class="ti ti-school"></i> Beca</button>
+                <button class="chip" data-type="curso"><i class="ti ti-book"></i> Curso</button>
+                <button class="chip" data-type="freelance"><i class="ti ti-device-laptop"></i> Freelance</button>
+                <button class="chip" data-type="recurso"><i class="ti ti-file-text"></i> Recurso</button>
+            </div>
+
+            <div class="control-row">
+                <div class="select-wrapper">
+                    <i class="ti ti-category select-icon"></i>
+                    <select id="categoria-filter">
+                        <option value="todas">Todas las categorias</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-row toggles">
+                <label class="toggle">
+                    <input type="checkbox" id="toggle-residencia" />
+                    <span><i class="ti ti-home"></i> Sin necesitar residencia</span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id="toggle-pago" />
+                    <span><i class="ti ti-coin"></i> Paga internacional</span>
+                </label>
+            </div>
+        </section>
+
+        <section class="manifest" aria-label="Listado de oportunidades">
+            <div class="manifest-head">
+                <span>Tipo</span>
+                <span>Oportunidad</span>
+                <span>Modalidad</span>
+                <span>Pago intl.</span>
+                <span>Vence</span>
+            </div>
+            <div id="manifest-body"></div>
+            <p id="empty-state" class="empty-state" hidden>
+                <i class="ti ti-waves"></i> Nada por aqui con esos filtros.
+            </p>
+        </section>
+
+        <section class="contribute">
+            <h2><i class="ti ti-users"></i> ¿Tienes una oportunidad para compartir?</h2>
+            <p>
+                Edita <code>data/oportunidades.json</code> y abre un Pull Request.
+                <strong>¡Todas las profesiones son bienvenidas!</strong>
+            </p>
+            <div class="contribute-actions">
+                <a class="cta" href="https://github.com/" target="_blank"><i class="ti ti-git-pull-request"></i> Añadir oportunidad</a>
+                <a class="cta secondary" href="https://t.me/cujobshub" target="_blank"><i class="ti ti-brand-telegram"></i> Unete al Telegram</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3><i class="ti ti-flag-2"></i> cu_JobsHub</h3>
+                    <p>Conectando talento cubano con oportunidades globales.</p>
+                    <button id="share-btn" class="share-btn" hidden>
+                        <i class="ti ti-share"></i> Compartir
+                    </button>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="ti ti-link"></i> Enlaces</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/" target="_blank"><i class="ti ti-brand-github"></i> GitHub</a></li>
+                        <li><a href="https://t.me/cujobshub" target="_blank"><i class="ti ti-brand-telegram"></i> Telegram</a></li>
+                        <li><a href="#" id="feedback-link"><i class="ti ti-message"></i> Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="ti ti-tool"></i> Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#top"><i class="ti ti-arrow-up"></i> Volver arriba</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p><small>&copy; 2026 cu_JobsHub &mdash; Hecho con <i class="ti ti-heart" style="color:#E63946;"></i> por la comunidad cubana.</small></p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top"><i class="ti ti-arrow-up"></i></button>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
