@@ -1,0 +1,40 @@
+name: Validar Oportunidades
+
+on:
+  pull_request:
+    paths:
+      - "data/oportunidades.json"
+  push:
+    branches: [main]
+    paths:
+      - "data/oportunidades.json"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Validar JSON
+        run: |
+          node scripts/validate.js
+
+      - name: Verificar estructura
+        run: |
+          if grep -q '"categoria": ""' data/oportunidades.json; then
+            echo "Hay entradas sin categoria"
+            exit 1
+          fi
+
+      - name: Verificar formato JSON
+        run: |
+          if ! jq empty data/oportunidades.json; then
+            echo "JSON invalido"
+            exit 1
+          fi
