@@ -1,4 +1,3 @@
-```markdown
 # 🇨🇺 cu_JobsHub
 
 **Conectando TODO el talento cubano con oportunidades globales**
