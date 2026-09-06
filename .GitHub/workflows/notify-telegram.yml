@@ -1,0 +1,48 @@
+name: Notificar nueva oportunidad a Telegram
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/oportunidades.json"
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detectar oportunidades nuevas
+        id: diff
+        run: |
+          git diff HEAD^ HEAD -- data/oportunidades.json > diff.txt || true
+          if grep -q '"titulo":' diff.txt; then
+            TITULOS=$(grep '"titulo":' diff.txt | grep '^+' | sed -E 's/.*"titulo": *"([^"]*)".*/\1/' | head -5)
+            if [ -n "$TITULOS" ]; then
+              echo "hay_cambios=true" >> "$GITHUB_OUTPUT"
+              {
+                echo "titulos<<EOF"
+                echo "$TITULOS"
+                echo "EOF"
+              } >> "$GITHUB_OUTPUT"
+            else
+              echo "hay_cambios=false" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "hay_cambios=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Enviar mensaje a Telegram
+        if: steps.diff.outputs.hay_cambios == 'true' && env.TELEGRAM_BOT_TOKEN != ''
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          MENSAJE="NUEVA OPORTUNIDAD en cu_JobsHub%0A%0A${{ steps.diff.outputs.titulos }}%0A%0Ahttps://cujobshub.com"
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            -d text="${MENSAJE}" \
+            -d parse_mode="HTML"
