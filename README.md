@@ -2,9 +2,8 @@
 
 **Conectando TODO el talento cubano con oportunidades globales**
 
-[![GitHub stars](https://img.shields.io/github/stars/tuusuario/cu_jobshub?style=social)](https://github.com/tuusuario/cu_jobshub)
-[![GitHub forks](https://img.shields.io/github/forks/tuusuario/cu_jobshub?style=social)](https://github.com/tuusuario/cu_jobshub)
-[![GitHub issues](https://img.shields.io/github/issues/tuusuario/cu_jobshub)](https://github.com/tuusuario/cu_jobshub)
+[![GitHub stars](https://img.shields.io/github/stars/Disney-18/Cuban-Jobs-Hub?style=social)](https://github.com/Disney-18/Cuban-Jobs-Hub)
+[![GitHub forks](https://img.shields.io/github/forks/Disney-18/Cuban-Jobs-Hub?style=social)](https://github.com/Disney-18/Cuban-Jobs-Hub)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
@@ -65,8 +64,9 @@ cu_JobsHub/
 ├── js/
 │   └── app.js              # Lógica JavaScript
 │
-├── data/
-│   └── oportunidades.json  # Los datos (esto es lo que editas)
+├── oportunidades.json      # Los datos (esto es lo que editas)
+├── detalle.html            # Página de detalle
+├── detalle.js              # Lógica de detalle
 │
 ├── scripts/
 │   └── validate.js         # Script de validación
@@ -84,17 +84,13 @@ cu_JobsHub/
 
 ### Paso 1: Haz un fork del repositorio
 
-```
-
-1. Ve a https://github.com/tuusuario/cu_JobsHub
+1. Ve a [https://github.com/Disney-18/Cuban-Jobs-Hub](https://github.com/Disney-18/Cuban-Jobs-Hub)
 2. Haz clic en "Fork" (arriba a la derecha)
 3. Espera a que se cree tu copia
 
-```
-
 ### Paso 2: Edita el archivo de datos
 
-Edita `data/oportunidades.json` y añade una nueva entrada:
+Edita [`oportunidades.json`](https://github.com/Disney-18/Cuban-Jobs-Hub/blob/main/oportunidades.json) y añade una nueva entrada:
 
 ```json
 {
@@ -119,13 +115,11 @@ Edita `data/oportunidades.json` y añade una nueva entrada:
 
 Paso 3: Abre un Pull Request
 
-```
 1. Ve a tu repositorio
 2. Haz clic en "Pull Request"
 3. Escribe un mensaje describiendo tu contribución
 4. Haz clic en "Create Pull Request"
 5. ¡Listo! Tu oportunidad será revisada
-```
 
 ---
 
@@ -153,13 +147,11 @@ Local python3 -m http.server 8080
 
 Activar GitHub Pages (recomendado):
 
-```
 1. Ve a Settings → Pages
 2. Source: Deploy from a branch
 3. Branch: main → / (root)
 4. Haz clic en "Save"
-5. Tu sitio estará en: https://tuusuario.github.io/cu_JobsHub/
-```
+5. Tu sitio estará en: https://disney-18.github.io/Cuban-Jobs-Hub
 
 ---
 
@@ -169,15 +161,13 @@ El proyecto incluye un workflow que notifica automáticamente a Telegram cuando 
 
 Configuración:
 
-```
 1. Crea un bot con @BotFather en Telegram
 2. Guarda el TELEGRAM_BOT_TOKEN
 3. Obtén el TELEGRAM_CHAT_ID de tu canal
 4. En GitHub: Settings → Secrets and variables → Actions
 5. Añade los secretos:
-   - TELEGRAM_BOT_TOKEN
-   - TELEGRAM_CHAT_ID
-```
+   · TELEGRAM_BOT_TOKEN
+   · TELEGRAM_CHAT_ID
 
 ---
 
@@ -185,8 +175,7 @@ Configuración:
 
 Plataforma Enlace
 Telegram @cujobshub
-GitHub github.com/tuusuario/cu_jobshub
-Twitter/X @cujobshub
+GitHub github.com/Disney-18/Cuban-Jobs-Hub
 
 ---
 
@@ -200,7 +189,7 @@ Roadmap:
 ☑ Sistema de categorías multidisciplinario
 ☑ Validación automática de datos
 ☑ Notificaciones a Telegram
-☐ Página de detalle por oportunidad
+☑ Página de detalle por oportunidad
 ☐ Formulario de contribución directa
 ☐ Versión en inglés
 
