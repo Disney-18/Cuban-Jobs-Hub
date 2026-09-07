@@ -1,10 +1,6 @@
 (function() {
     "use strict";
 
-    // ============================================================
-    // CONFIGURACION
-    // ============================================================
-
     const TIPO_LABEL = {
         empleo: '<i class="ti ti-briefcase"></i> Empleo',
         beca: '<i class="ti ti-school"></i> Beca',
@@ -38,10 +34,6 @@
         "Recursos Humanos": "ti-users"
     };
 
-    // ============================================================
-    // ESTADO
-    // ============================================================
-
     const state = {
         all: [],
         filtered: [],
@@ -53,10 +45,6 @@
         pagina: 1,
         porPagina: 10
     };
-
-    // ============================================================
-    // DOM REFERENCIAS
-    // ============================================================
 
     const $manifestBody = document.getElementById("manifest-body");
     const $empty = document.getElementById("empty-state");
@@ -72,10 +60,6 @@
     const $pageInfo = document.getElementById("page-info");
     const $prevBtn = document.getElementById("prev-page");
     const $nextBtn = document.getElementById("next-page");
-
-    // ============================================================
-    // UTILIDADES
-    // ============================================================
 
     function formatFecha(iso) {
         if (!iso) return "Abierto";
@@ -105,10 +89,6 @@
         return values;
     }
 
-    // ============================================================
-    // FILTROS
-    // ============================================================
-
     function matchesFilters(item) {
         if (state.tipo !== "todos" && item.tipo !== state.tipo) return false;
         if (state.categoria !== "todas" && item.categoria !== state.categoria) return false;
@@ -124,7 +104,6 @@
 
     function applyFilters() {
         state.filtered = state.all.filter(matchesFilters);
-        // Ordenar: más recientes primero (por fecha_limite)
         state.filtered.sort(function(a, b) {
             if (!a.fecha_limite) return 1;
             if (!b.fecha_limite) return -1;
@@ -132,10 +111,6 @@
         });
         state.pagina = 1;
     }
-
-    // ============================================================
-    // RENDER (con paginación)
-    // ============================================================
 
     function render() {
         applyFilters();
@@ -165,7 +140,6 @@
         pageItems.forEach(function(item) {
             var row = document.createElement("a");
             row.className = "manifest-row";
-            // En lugar de abrir enlace, va a detalle.html con el ID
             row.href = "detalle.html?id=" + encodeURIComponent(item.id);
             row.target = "_self";
 
@@ -195,10 +169,6 @@
         updatePagination(totalItems, totalPages);
     }
 
-    // ============================================================
-    // PAGINACIÓN
-    // ============================================================
-
     function updatePagination(totalItems, totalPages) {
         if (!$pageInfo) return;
         $pageInfo.textContent = 'Página ' + state.pagina + ' de ' + (totalPages || 1) + ' (' + totalItems + ' oportunidades)';
@@ -217,13 +187,8 @@
         if (page > totalPages) page = totalPages || 1;
         state.pagina = page;
         render();
-        // Scroll al inicio del listado
         document.querySelector('.manifest').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-
-    // ============================================================
-    // ESTADISTICAS
-    // ============================================================
 
     function updateStats(items) {
         if ($statsCounter) {
@@ -240,10 +205,6 @@
             $statsPaises.textContent = paises.length;
         }
     }
-
-    // ============================================================
-    // CONTROLES
-    // ============================================================
 
     function wireControls() {
         $chips.forEach(function(chip) {
@@ -275,7 +236,6 @@
             render();
         });
 
-        // Botones de paginación
         if ($prevBtn) {
             $prevBtn.addEventListener("click", function() {
                 goToPage(state.pagina - 1);
@@ -288,10 +248,6 @@
             });
         }
     }
-
-    // ============================================================
-    // CATEGORIAS DINAMICAS
-    // ============================================================
 
     function populateCategoryFilter() {
         var categorias = getUniqueValues(state.all, 'categoria');
@@ -313,10 +269,6 @@
             select.appendChild(option);
         });
     }
-
-    // ============================================================
-    // BOARD FLIP
-    // ============================================================
 
     function wireBoardFlip() {
         var el = document.getElementById("flip-text");
@@ -342,10 +294,6 @@
         }, 3500);
     }
 
-    // ============================================================
-    // SHARE BUTTON
-    // ============================================================
-
     function setupShare() {
         var shareBtn = document.getElementById('share-btn');
         if (!shareBtn) return;
@@ -362,10 +310,6 @@
         }
     }
 
-    // ============================================================
-    // BACK TO TOP
-    // ============================================================
-
     function setupBackToTop() {
         var btn = document.getElementById('back-to-top');
         if (!btn) return;
@@ -378,10 +322,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-
-    // ============================================================
-    // FEEDBACK
-    // ============================================================
 
     function setupFeedback() {
         var link = document.getElementById('feedback-link');
@@ -400,10 +340,6 @@
         });
     }
 
-    // ============================================================
-    // INICIALIZACION
-    // ============================================================
-
     async function init() {
         try {
             var res = await fetch("oportunidades.json");
@@ -421,7 +357,7 @@
             }
         } catch (err) {
             $manifestBody.innerHTML =
-                '<p class="empty-state"><i class="ti ti-alert-circle"></i> No se pudo cargar el listado. Revisa <code>data/oportunidades.json</code>.</p>';
+                '<p class="empty-state"><i class="ti ti-alert-circle"></i> No se pudo cargar el listado. Revisa el archivo <code>oportunidades.json</code>.</p>';
             $pagination.style.display = 'none';
             console.error("Error cargando oportunidades:", err);
             return;
@@ -435,10 +371,6 @@
         setupFeedback();
         render();
     }
-
-    // ============================================================
-    // INICIO
-    // ============================================================
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
