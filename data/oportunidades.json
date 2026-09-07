@@ -1,5 +1,5 @@
 {
-  "_comment": "cu_JobsHub — Oportunidades para todo talento cubano",
+  "_comment": "cu_JobsHub — Oportunidades con datos de contacto",
   "ultima_actualizacion": "2026-09-06",
   "oportunidades": [
     {
@@ -15,10 +15,12 @@
       "nivel": "intermedio",
       "fecha_limite": "2026-12-15",
       "enlace": "https://ejemplo.com/asistente-virtual",
-      "descripcion": "Se necesita asistente virtual con excelente ingles y espanol. Gestion de agenda, correos electronicos y tareas administrativas.",
+      "descripcion": "Se necesita asistente virtual con excelente ingles y espanol. Gestion de agenda, correos electronicos y tareas administrativas. Horario flexible de lunes a viernes.",
       "fuente": "Directo",
       "categoria": "Administracion",
-      "habilidades": ["Ingles avanzado", "Organizacion", "Google Suite"]
+      "habilidades": ["Ingles avanzado", "Organizacion", "Google Suite"],
+      "telefono": "+5351234567",
+      "email": "contacto@empresa.com"
     },
     {
       "id": "emp-002",
@@ -33,10 +35,12 @@
       "nivel": "intermedio-avanzado",
       "fecha_limite": "2026-11-30",
       "enlace": "https://ejemplo.com/disenador-grafico",
-      "descripcion": "Buscamos disenador grafico con experiencia en branding, logos y redes sociales.",
+      "descripcion": "Buscamos disenador grafico con experiencia en branding, logos y redes sociales. Conocimiento de Adobe Suite y Figma. Portfolio requerido.",
       "fuente": "LinkedIn",
       "categoria": "Diseno",
-      "habilidades": ["Adobe Suite", "Figma", "Creatividad"]
+      "habilidades": ["Adobe Suite", "Figma", "Creatividad"],
+      "telefono": "+525512345678",
+      "email": "jobs@creativeagency.com"
     },
     {
       "id": "emp-003",
@@ -51,10 +55,12 @@
       "nivel": "intermedio",
       "fecha_limite": "2026-10-30",
       "enlace": "https://ejemplo.com/content-writer",
-      "descripcion": "Se necesita redactor de contenido en espanol para blogs, redes sociales y newsletters.",
+      "descripcion": "Se necesita redactor de contenido en espanol para blogs, redes sociales y newsletters. Conocimiento de SEO basico y capacidad de investigacion.",
       "fuente": "Referencia",
       "categoria": "Redaccion",
-      "habilidades": ["Redaccion SEO", "Investigacion", "Creatividad"]
+      "habilidades": ["Redaccion SEO", "Investigacion", "Creatividad"],
+      "telefono": "+34912345678",
+      "email": "content@agency.com"
     },
     {
       "id": "emp-004",
@@ -69,10 +75,12 @@
       "nivel": "intermedio",
       "fecha_limite": "2026-11-15",
       "enlace": "https://ejemplo.com/community-manager",
-      "descripcion": "Community manager para gestionar redes sociales de startup de salud.",
+      "descripcion": "Community manager para gestionar redes sociales de startup de salud. Creacion de contenido, engagement y analisis de metricas.",
       "fuente": "Directo",
       "categoria": "Marketing",
-      "habilidades": ["Redes Sociales", "Canva", "Analitica"]
+      "habilidades": ["Redes Sociales", "Canva", "Analitica"],
+      "telefono": "+541123456789",
+      "email": "marketing@healthtech.com"
     },
     {
       "id": "emp-005",
@@ -87,10 +95,12 @@
       "nivel": "intermedio-avanzado",
       "fecha_limite": "2026-11-30",
       "enlace": "https://ejemplo.com/fullstack-dev",
-      "descripcion": "Buscamos desarrollador full stack con experiencia en React y Node.js.",
+      "descripcion": "Buscamos desarrollador full stack con experiencia en React y Node.js. Proyecto internacional con equipo distribuido. Salario competitivo en USD.",
       "fuente": "Reclutamiento directo",
       "categoria": "Programacion",
-      "habilidades": ["React", "Node.js", "TypeScript"]
+      "habilidades": ["React", "Node.js", "TypeScript"],
+      "telefono": "+34987654321",
+      "email": "tech@techglobal.com"
     },
     {
       "id": "fre-001",
@@ -105,10 +115,12 @@
       "nivel": "avanzado",
       "fecha_limite": "2026-10-15",
       "enlace": "https://ejemplo.com/traductor-legal",
-      "descripcion": "Proyecto de traduccion de documentos legales del ingles al espanol.",
+      "descripcion": "Proyecto de traduccion de documentos legales (contratos, acuerdos) del ingles al espanol. Se requiere experiencia en terminologia legal y precision.",
       "fuente": "Upwork",
       "categoria": "Traduccion",
-      "habilidades": ["Ingles avanzado", "Terminologia legal", "Precision"]
+      "habilidades": ["Ingles avanzado", "Terminologia legal", "Precision"],
+      "telefono": "+441234567890",
+      "email": "legal@translations.com"
     },
     {
       "id": "fre-002",
@@ -123,10 +135,12 @@
       "nivel": "intermedio",
       "fecha_limite": "2026-10-20",
       "enlace": "https://ejemplo.com/editor-video",
-      "descripcion": "Se necesita editor de video para contenido educativo en YouTube.",
+      "descripcion": "Se necesita editor de video para contenido educativo en YouTube. Manejo de Adobe Premiere o DaVinci Resolve. Edicion de cortos y largos.",
       "fuente": "Freelance",
       "categoria": "Audiovisual",
-      "habilidades": ["Adobe Premiere", "DaVinci", "Creatividad"]
+      "habilidades": ["Adobe Premiere", "DaVinci", "Creatividad"],
+      "telefono": "+525598765432",
+      "email": "video@contentstudio.com"
     },
     {
       "id": "fre-003",
@@ -141,10 +155,12 @@
       "nivel": "intermedio-avanzado",
       "fecha_limite": "2026-10-10",
       "enlace": "https://ejemplo.com/freelance-ui-fintech",
-      "descripcion": "Proyecto de 3 meses para redisenar la interfaz de una aplicacion fintech.",
+      "descripcion": "Proyecto de 3 meses para redisenar la interfaz de una aplicacion fintech. Pago por entregas en cripto.",
       "fuente": "Freelance platform",
       "categoria": "Diseno",
-      "habilidades": ["Figma", "UI/UX", "Prototipado"]
+      "habilidades": ["Figma", "UI/UX", "Prototipado"],
+      "telefono": "+525587654321",
+      "email": "design@fintech.com"
     },
     {
       "id": "bec-001",
@@ -159,10 +175,11 @@
       "nivel": "postgrado",
       "fecha_limite": "2026-12-20",
       "enlace": "https://ejemplo.com/beca-mba",
-      "descripcion": "Beca completa para MBA online. Cubre 50% de la matricula.",
+      "descripcion": "Beca completa para MBA online. Cubre 50% de la matricula. Para profesionales con experiencia en administracion o emprendimiento.",
       "fuente": "Universidad",
       "categoria": "Administracion",
-      "habilidades": ["Liderazgo", "Gestion", "Estrategia"]
+      "habilidades": ["Liderazgo", "Gestion", "Estrategia"],
+      "email": "becas@usal.es"
     },
     {
       "id": "bec-002",
@@ -177,10 +194,11 @@
       "nivel": "postgrado",
       "fecha_limite": "2026-12-15",
       "enlace": "https://ejemplo.com/beca-ciberseguridad",
-      "descripcion": "Beca completa para maestria en ciberseguridad.",
+      "descripcion": "Beca completa para maestria en ciberseguridad. Incluye alojamiento y manutencion. Requiere nivel B2 de ingles.",
       "fuente": "Convocatoria oficial",
       "categoria": "Programacion",
-      "habilidades": ["Ciberseguridad", "Redes", "Criptografia"]
+      "habilidades": ["Ciberseguridad", "Redes", "Criptografia"],
+      "email": "ciberseguridad@uma.es"
     },
     {
       "id": "cur-001",
@@ -195,10 +213,11 @@
       "nivel": "principiante",
       "fecha_limite": "",
       "enlace": "https://ejemplo.com/curso-marketing-digital",
-      "descripcion": "Curso gratuito de marketing digital certificado por Google.",
+      "descripcion": "Curso gratuito de marketing digital certificado por Google. Incluye SEO, SEM, redes sociales y analitica.",
       "fuente": "Google",
       "categoria": "Marketing",
-      "habilidades": ["Marketing Digital", "SEO", "Analitica"]
+      "habilidades": ["Marketing Digital", "SEO", "Analitica"],
+      "email": "google@activate.com"
     },
     {
       "id": "cur-002",
@@ -213,10 +232,11 @@
       "nivel": "intermedio",
       "fecha_limite": "",
       "enlace": "https://ejemplo.com/ingles-negocios",
-      "descripcion": "Curso gratuito de ingles para negocios.",
+      "descripcion": "Curso gratuito de ingles para negocios. Enfocado en vocabulario corporativo, presentaciones y comunicacion profesional.",
       "fuente": "EF",
       "categoria": "Idiomas",
-      "habilidades": ["Ingles", "Comunicacion", "Negocios"]
+      "habilidades": ["Ingles", "Comunicacion", "Negocios"],
+      "email": "info@ef.com"
     },
     {
       "id": "cur-003",
@@ -231,10 +251,11 @@
       "nivel": "principiante-intermedio",
       "fecha_limite": "",
       "enlace": "https://ejemplo.com/curso-ia-google",
-      "descripcion": "Curso gratuito de 6 semanas sobre fundamentos de IA y Machine Learning.",
+      "descripcion": "Curso gratuito de 6 semanas sobre fundamentos de IA y Machine Learning. Certificado internacional al completar.",
       "fuente": "Google",
       "categoria": "Programacion",
-      "habilidades": ["IA", "Machine Learning", "Python"]
+      "habilidades": ["IA", "Machine Learning", "Python"],
+      "email": "ia@google.com"
     },
     {
       "id": "rec-001",
@@ -249,10 +270,11 @@
       "nivel": "todos",
       "fecha_limite": "",
       "enlace": "https://ejemplo.com/guia-marketing-cuba",
-      "descripcion": "Guia completa para profesionales de marketing que quieren trabajar remotamente desde Cuba.",
+      "descripcion": "Guia completa para profesionales de marketing que quieren trabajar remotamente desde Cuba. Incluye plataformas, metodos de pago y estrategias.",
       "fuente": "Comunidad",
       "categoria": "Marketing",
-      "habilidades": ["Marketing", "Empleo remoto", "Freelance"]
+      "habilidades": ["Marketing", "Empleo remoto", "Freelance"],
+      "email": "comunidad@cujobshub.com"
     },
     {
       "id": "rec-002",
@@ -267,10 +289,11 @@
       "nivel": "todos",
       "fecha_limite": "",
       "enlace": "https://ejemplo.com/guia-portafolios",
-      "descripcion": "Recurso para disenadores, artistas y creativos sobre como presentar su portafolio.",
+      "descripcion": "Recurso para disenadores, artistas y creativos sobre como presentar su portafolio y CV para oportunidades internacionales.",
       "fuente": "Comunidad",
       "categoria": "Diseno",
-      "habilidades": ["Portafolio", "CV", "Presentacion"]
+      "habilidades": ["Portafolio", "CV", "Presentacion"],
+      "email": "disenadores@cuba.com"
     },
     {
       "id": "rec-003",
@@ -285,10 +308,11 @@
       "nivel": "todos",
       "fecha_limite": "",
       "enlace": "https://ejemplo.com/guia-pagos-cuba",
-      "descripcion": "Recurso comunitario actualizado con las mejores practicas para recibir pagos internacionales desde Cuba.",
+      "descripcion": "Recurso comunitario actualizado con las mejores practicas para recibir pagos internacionales desde Cuba. Incluye opciones con cripto, PayPal, Zelle y mas.",
       "fuente": "Comunidad",
       "categoria": "Finanzas",
-      "habilidades": ["Finanzas", "Pagos internacionales", "Cripto"]
+      "habilidades": ["Finanzas", "Pagos internacionales", "Cripto"],
+      "email": "finanzas@cujobshub.com"
     }
   ]
 }
