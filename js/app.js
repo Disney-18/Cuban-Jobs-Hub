@@ -340,9 +340,15 @@
         });
     }
 
+    // ============================================================
+    // INICIALIZACIÓN - ¡RUTA CORREGIDA!
+    // ============================================================
+
     async function init() {
         try {
+            // ✅ RUTA CORRECTA: busca en la raíz
             var res = await fetch("oportunidades.json");
+            
             if (!res.ok) throw new Error("HTTP " + res.status);
             var json = await res.json();
             state.all = (json.oportunidades || []).filter(function(i) {
@@ -357,7 +363,7 @@
             }
         } catch (err) {
             $manifestBody.innerHTML =
-                '<p class="empty-state"><i class="ti ti-alert-circle"></i> No se pudo cargar el listado. Revisa el archivo <code>oportunidades.json</code>.</p>';
+                '<p class="empty-state"><i class="ti ti-alert-circle"></i> No se pudo cargar el listado. Revisa el archivo <code>oportunidades.json</code> en la raiz.</p>';
             $pagination.style.display = 'none';
             console.error("Error cargando oportunidades:", err);
             return;
