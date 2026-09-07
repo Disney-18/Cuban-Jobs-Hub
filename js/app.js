@@ -340,13 +340,8 @@
         });
     }
 
-    // ============================================================
-    // INICIALIZACIÓN - ¡RUTA CORREGIDA!
-    // ============================================================
-
     async function init() {
         try {
-            // ✅ RUTA CORRECTA: busca en la raíz
             var res = await fetch("oportunidades.json");
             
             if (!res.ok) throw new Error("HTTP " + res.status);
