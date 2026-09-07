@@ -139,6 +139,7 @@ img {
     padding: 48px 0 40px;
     border-bottom: 1px solid var(--panel-line);
     background: radial-gradient(ellipse at top left, var(--panel), var(--ink));
+    text-align: center;
 }
 
 .board {
@@ -149,6 +150,7 @@ img {
     padding: 8px 16px;
     margin-bottom: 24px;
     box-shadow: var(--shadow);
+    text-align: left;
 }
 
 .board-row {
@@ -178,6 +180,7 @@ img {
 .hero-title {
     font-size: clamp(2rem, 5.5vw, 3.2rem);
     max-width: 16ch;
+    margin: 0 auto;
     background: linear-gradient(135deg, #EAF2F1 60%, var(--tide));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -188,7 +191,7 @@ img {
     max-width: 50ch;
     color: var(--text-soft);
     font-size: 1.05rem;
-    margin-top: 16px;
+    margin: 16px auto 0;
 }
 
 .hero-sub strong {
