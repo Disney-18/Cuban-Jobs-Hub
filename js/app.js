@@ -1,6 +1,10 @@
 (function() {
     "use strict";
 
+    // ============================================================
+    // CONFIGURACION
+    // ============================================================
+
     const TIPO_LABEL = {
         empleo: '<i class="ti ti-briefcase"></i> Empleo',
         beca: '<i class="ti ti-school"></i> Beca',
@@ -34,14 +38,25 @@
         "Recursos Humanos": "ti-users"
     };
 
+    // ============================================================
+    // ESTADO
+    // ============================================================
+
     const state = {
         all: [],
+        filtered: [],
         tipo: "todos",
         categoria: "todas",
         query: "",
         soloSinResidencia: false,
-        soloPagoIntl: false
+        soloPagoIntl: false,
+        pagina: 1,
+        porPagina: 10
     };
+
+    // ============================================================
+    // DOM REFERENCIAS
+    // ============================================================
 
     const $manifestBody = document.getElementById("manifest-body");
     const $empty = document.getElementById("empty-state");
@@ -53,6 +68,14 @@
     const $statsCounter = document.getElementById("stats-counter");
     const $statsCategorias = document.getElementById("stats-categorias");
     const $statsPaises = document.getElementById("stats-paises");
+    const $pagination = document.getElementById("pagination");
+    const $pageInfo = document.getElementById("page-info");
+    const $prevBtn = document.getElementById("prev-page");
+    const $nextBtn = document.getElementById("next-page");
+
+    // ============================================================
+    // UTILIDADES
+    // ============================================================
 
     function formatFecha(iso) {
         if (!iso) return "Abierto";
@@ -82,6 +105,10 @@
         return values;
     }
 
+    // ============================================================
+    // FILTROS
+    // ============================================================
+
     function matchesFilters(item) {
         if (state.tipo !== "todos" && item.tipo !== state.tipo) return false;
         if (state.categoria !== "todas" && item.categoria !== state.categoria) return false;
@@ -95,25 +122,52 @@
         return true;
     }
 
+    function applyFilters() {
+        state.filtered = state.all.filter(matchesFilters);
+        // Ordenar: más recientes primero (por fecha_limite)
+        state.filtered.sort(function(a, b) {
+            if (!a.fecha_limite) return 1;
+            if (!b.fecha_limite) return -1;
+            return new Date(a.fecha_limite) - new Date(b.fecha_limite);
+        });
+        state.pagina = 1;
+    }
+
+    // ============================================================
+    // RENDER (con paginación)
+    // ============================================================
+
     function render() {
-        var items = state.all.filter(matchesFilters);
+        applyFilters();
+        
+        var totalItems = state.filtered.length;
+        var totalPages = Math.ceil(totalItems / state.porPagina);
+        
+        if (state.pagina > totalPages) state.pagina = totalPages || 1;
+        
+        var start = (state.pagina - 1) * state.porPagina;
+        var end = Math.min(start + state.porPagina, totalItems);
+        var pageItems = state.filtered.slice(start, end);
+
         $manifestBody.innerHTML = "";
 
-        if (items.length === 0) {
+        if (pageItems.length === 0) {
             $empty.hidden = false;
-            updateStats(items);
+            $pagination.style.display = 'none';
+            updateStats(pageItems);
             return;
         }
         $empty.hidden = true;
+        $pagination.style.display = 'flex';
 
         var frag = document.createDocumentFragment();
 
-        items.forEach(function(item) {
+        pageItems.forEach(function(item) {
             var row = document.createElement("a");
             row.className = "manifest-row";
-            row.href = item.enlace || "#";
-            row.target = "_blank";
-            row.rel = "noopener noreferrer";
+            // En lugar de abrir enlace, va a detalle.html con el ID
+            row.href = "detalle.html?id=" + encodeURIComponent(item.id);
+            row.target = "_self";
 
             var tipoLabel = TIPO_LABEL[item.tipo] || item.tipo;
             var modalidadLabel = MODALIDAD_LABEL[item.modalidad] || item.modalidad;
@@ -137,12 +191,43 @@
         });
 
         $manifestBody.appendChild(frag);
-        updateStats(items);
+        updateStats(pageItems);
+        updatePagination(totalItems, totalPages);
     }
+
+    // ============================================================
+    // PAGINACIÓN
+    // ============================================================
+
+    function updatePagination(totalItems, totalPages) {
+        if (!$pageInfo) return;
+        $pageInfo.textContent = 'Página ' + state.pagina + ' de ' + (totalPages || 1) + ' (' + totalItems + ' oportunidades)';
+        
+        if ($prevBtn) {
+            $prevBtn.disabled = state.pagina <= 1;
+        }
+        if ($nextBtn) {
+            $nextBtn.disabled = state.pagina >= totalPages;
+        }
+    }
+
+    function goToPage(page) {
+        var totalPages = Math.ceil(state.filtered.length / state.porPagina);
+        if (page < 1) page = 1;
+        if (page > totalPages) page = totalPages || 1;
+        state.pagina = page;
+        render();
+        // Scroll al inicio del listado
+        document.querySelector('.manifest').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ============================================================
+    // ESTADISTICAS
+    // ============================================================
 
     function updateStats(items) {
         if ($statsCounter) {
-            $statsCounter.textContent = items.length;
+            $statsCounter.textContent = state.filtered.length;
         }
 
         if ($statsCategorias) {
@@ -155,6 +240,10 @@
             $statsPaises.textContent = paises.length;
         }
     }
+
+    // ============================================================
+    // CONTROLES
+    // ============================================================
 
     function wireControls() {
         $chips.forEach(function(chip) {
@@ -185,7 +274,24 @@
             state.categoria = e.target.value;
             render();
         });
+
+        // Botones de paginación
+        if ($prevBtn) {
+            $prevBtn.addEventListener("click", function() {
+                goToPage(state.pagina - 1);
+            });
+        }
+
+        if ($nextBtn) {
+            $nextBtn.addEventListener("click", function() {
+                goToPage(state.pagina + 1);
+            });
+        }
     }
+
+    // ============================================================
+    // CATEGORIAS DINAMICAS
+    // ============================================================
 
     function populateCategoryFilter() {
         var categorias = getUniqueValues(state.all, 'categoria');
@@ -207,6 +313,10 @@
             select.appendChild(option);
         });
     }
+
+    // ============================================================
+    // BOARD FLIP
+    // ============================================================
 
     function wireBoardFlip() {
         var el = document.getElementById("flip-text");
@@ -232,6 +342,10 @@
         }, 3500);
     }
 
+    // ============================================================
+    // SHARE BUTTON
+    // ============================================================
+
     function setupShare() {
         var shareBtn = document.getElementById('share-btn');
         if (!shareBtn) return;
@@ -248,6 +362,10 @@
         }
     }
 
+    // ============================================================
+    // BACK TO TOP
+    // ============================================================
+
     function setupBackToTop() {
         var btn = document.getElementById('back-to-top');
         if (!btn) return;
@@ -260,6 +378,10 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+
+    // ============================================================
+    // FEEDBACK
+    // ============================================================
 
     function setupFeedback() {
         var link = document.getElementById('feedback-link');
@@ -278,9 +400,13 @@
         });
     }
 
+    // ============================================================
+    // INICIALIZACION
+    // ============================================================
+
     async function init() {
         try {
-            var res = await fetch("data/oportunidades.json");
+            var res = await fetch("oportunidades.json");
             if (!res.ok) throw new Error("HTTP " + res.status);
             var json = await res.json();
             state.all = (json.oportunidades || []).filter(function(i) {
@@ -290,11 +416,13 @@
             if (state.all.length === 0) {
                 $manifestBody.innerHTML =
                     '<p class="empty-state"><i class="ti ti-inbox"></i> No hay oportunidades cargadas. ¡Se el primero en contribuir!</p>';
+                $pagination.style.display = 'none';
                 return;
             }
         } catch (err) {
             $manifestBody.innerHTML =
                 '<p class="empty-state"><i class="ti ti-alert-circle"></i> No se pudo cargar el listado. Revisa <code>data/oportunidades.json</code>.</p>';
+            $pagination.style.display = 'none';
             console.error("Error cargando oportunidades:", err);
             return;
         }
@@ -307,6 +435,10 @@
         setupFeedback();
         render();
     }
+
+    // ============================================================
+    // INICIO
+    // ============================================================
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
